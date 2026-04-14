@@ -1223,6 +1223,42 @@ textarea.form-input::-webkit-resizer { display: none; }
 
 
 
+/*-----------------------------------*\
+  #RESUME DOWNLOAD FAB
+\*-----------------------------------*/
+
+.resume-download-fab {
+  position: fixed;
+  right: 16px;
+  bottom: 86px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 999px;
+  background: var(--bg-gradient-yellow-1);
+  color: var(--smoky-black);
+  font-size: var(--fs-7);
+  font-weight: var(--fw-600);
+  box-shadow: var(--shadow-4);
+  z-index: 6;
+  transition: transform var(--transition-1), box-shadow var(--transition-1), background var(--transition-1);
+}
+
+.resume-download-fab ion-icon {
+  font-size: 16px;
+  --ionicon-stroke-width: 48px;
+}
+
+.resume-download-fab:hover,
+.resume-download-fab:focus {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-5);
+  background: var(--orange-yellow-crayola);
+}
+
+
+
 
 
 /*-----------------------------------*\
@@ -1379,6 +1415,10 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .navbar-link { --fs-8: 14px; }
 
+  .resume-download-fab {
+    right: 24px;
+    bottom: 96px;
+  }
 
 
   /**
@@ -1717,6 +1757,10 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .navbar-link { font-weight: var(--fw-500); }
 
+  .resume-download-fab {
+    right: 30px;
+    bottom: 30px;
+  }
 
 
   /**
