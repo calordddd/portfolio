@@ -4,6 +4,7 @@ import { useRef, useState, useEffect } from "react"
 import { Canvas, useFrame } from "@react-three/fiber"
 import { OrbitControls, Text } from "@react-three/drei"
 import { motion, AnimatePresence } from "framer-motion"
+import { useTheme } from "next-themes"
 import type * as THREE from "three"
 import { Button } from "@/components/ui/button"
 import { ExternalLink, Github } from "lucide-react"
@@ -12,56 +13,88 @@ import { Card, CardContent } from "@/components/ui/card"
 const projectsData = [
   {
     id: 1,
-    name: "AI Chat Platform",
-    category: "ai",
+    name: "DevTrack",
+    category: "backend",
     position: [2, 1, 0],
     color: "#00ffff",
-    description: "Real-time AI-powered chat application with natural language processing.",
-    technologies: ["React", "Node.js", "OpenAI", "WebSocket"],
-    github: "https://github.com",
-    demo: "https://demo.com",
-    image: "/placeholder.svg?height=200&width=300",
+    description: "A comprehensive developer activity tracker and project monitoring dashboard.",
+    technologies: ["Laravel", "PHP", "React", "MySQL"],
+    github: "https://github.com/calordddd/DevTrack",
+    demo: "https://github.com/calordddd/DevTrack",
+    image: "/devtrack.png",
   },
   {
     id: 2,
-    name: "E-commerce Platform",
+    name: "Printababes",
     category: "frontend",
     position: [-2, -1, 1],
     color: "#ff00ff",
-    description: "Modern e-commerce platform with advanced filtering and payment integration.",
-    technologies: ["Next.js", "Stripe", "Prisma", "PostgreSQL"],
-    github: "https://github.com",
-    demo: "https://demo.com",
+    description: "High-performance responsive web application built with TypeScript and React.",
+    technologies: ["React", "TypeScript", "Next.js", "TailwindCSS"],
+    github: "https://github.com/calordddd/printababes",
+    demo: "https://github.com/calordddd/printababes",
     image: "/placeholder.svg?height=200&width=300",
   },
   {
     id: 3,
-    name: "API Gateway",
+    name: "Local Search Engine",
     category: "backend",
     position: [0, 2, -2],
     color: "#ffff00",
-    description: "Scalable API gateway with rate limiting, authentication, and monitoring.",
-    technologies: ["Node.js", "Redis", "Docker", "AWS"],
-    github: "https://github.com",
-    demo: "https://demo.com",
+    description: "High-performance index text search engine optimized for rapid local file scanning.",
+    technologies: ["C++", "File I/O", "Data Structures", "Algorithms"],
+    github: "https://github.com/calordddd/LocalSearchEngine",
+    demo: "https://github.com/calordddd/LocalSearchEngine",
     image: "/placeholder.svg?height=200&width=300",
   },
   {
     id: 4,
-    name: "Open Source UI Library",
-    category: "opensource",
+    name: "All In One Tool",
+    category: "frontend",
     position: [-1, 0, 2],
     color: "#00ff00",
-    description: "Comprehensive React component library with TypeScript support.",
-    technologies: ["React", "TypeScript", "Storybook", "Rollup"],
-    github: "https://github.com",
-    demo: "https://demo.com",
+    description: "Cross-platform mobile application featuring administrative controls, budget calculators, and AI integrations.",
+    technologies: ["Dart", "Flutter", "Firebase", "AI API"],
+    github: "https://github.com/calordddd",
+    demo: "https://github.com/calordddd",
+    image: "/placeholder.svg?height=200&width=300",
+  },
+  {
+    id: 5,
+    name: "Automated Sorting System",
+    category: "backend",
+    position: [1.5, -1.5, -1],
+    color: "#ff8800",
+    description: "Industrial hardware sorting logic module optimized with high-performance C++ structure pipelines.",
+    technologies: ["C++", "System Architecture", "Hardware Integration"],
+    github: "https://github.com/calordddd",
+    demo: "https://github.com/calordddd",
+    image: "/placeholder.svg?height=200&width=300",
+  },
+  {
+    id: 6,
+    name: "Adapted",
+    category: "backend",
+    position: [-1.8, 1.8, -1.2],
+    color: "#0088ff",
+    description: "Adaptive learning system and tutoring progress tracking platform built in Laravel PHP.",
+    technologies: ["Laravel", "PHP", "MySQL", "TailwindCSS"],
+    github: "https://github.com/calordddd",
+    demo: "https://github.com/calordddd",
     image: "/placeholder.svg?height=200&width=300",
   },
 ]
 
 function ProjectPlanet({ project, onClick, isSelected }: any) {
   const meshRef = useRef<THREE.Mesh>(null)
+  const { theme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  const textColor = mounted && theme === "light" ? "#0f172a" : "white"
 
   useFrame((state) => {
     if (meshRef.current) {
@@ -98,7 +131,7 @@ function ProjectPlanet({ project, onClick, isSelected }: any) {
         <meshBasicMaterial color={project.color} transparent opacity={0.2} />
       </mesh>
 
-      <Text position={[0, -0.8, 0]} fontSize={0.15} color="white" anchorX="center" anchorY="middle">
+      <Text position={[0, -0.8, 0]} fontSize={0.15} color={textColor} anchorX="center" anchorY="middle">
         {project.name}
       </Text>
     </group>

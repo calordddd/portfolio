@@ -90,6 +90,12 @@ It’s **next-gen**, **SEO-friendly**, and designed to get you noticed by recrui
 
 ---
 
+## 🙏 Credits
+
+This portfolio is customized from the original template by [senotron/modern-portfolio](https://github.com/senotron/modern-portfolio).
+
+---
+
 ## 🤖 Crafted by AI
 
 This README and portfolio were **crafted by artificial intelligence** for maximum creativity, SEO, and developer appeal. ✨

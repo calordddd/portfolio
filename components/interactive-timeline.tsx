@@ -9,33 +9,30 @@ import { Calendar, MapPin, Briefcase } from "lucide-react"
 const timelineData = [
   {
     id: 1,
-    year: "2024",
-    title: "Senior Full-Stack Developer",
-    company: "TechCorp Inc.",
-    location: "San Francisco, CA",
-    description: "Leading development of next-generation web applications using cutting-edge technologies.",
-    technologies: ["React", "Node.js", "TypeScript", "AWS"],
-    achievements: ["Increased performance by 40%", "Led team of 8 developers", "Architected microservices"],
+    year: "Internship",
+    title: "Full-Stack Developer Intern",
+    company: "Cornersteel Systems Corporation",
+    location: "Mandaluyong City, PH",
+    description: "Engineered a production-ready, automated industrial web module and built cross-platform Flutter solutions connected to AI productivity services.",
+    technologies: ["Laravel", "React", "Flutter", "MySQL"],
+    achievements: [
+      "Engineered a production-ready, automated industrial web module optimizing complex ERP document compilation and cloud-to-print industrial pipelines, accelerating high-volume corporate printing execution.",
+      "Designed and integrated a cross-platform Flutter application featuring robust administrative task controls, budget calculations, and credential vaults connected to an AI-driven productivity service.",
+      "Collaborated in agile development sprints to perform comprehensive code reviews, write test scripts, and eliminate critical architectural vulnerabilities, maximizing system uptime across version rollouts."
+    ],
   },
   {
     id: 2,
-    year: "2022",
-    title: "Creative Technologist",
-    company: "Digital Agency",
-    location: "New York, NY",
-    description: "Bridged design and development to create immersive digital experiences.",
-    technologies: ["Three.js", "WebGL", "React", "Python"],
-    achievements: ["Won 3 design awards", "Created viral AR campaign", "Mentored junior developers"],
-  },
-  {
-    id: 3,
-    year: "2020",
-    title: "Frontend Developer",
-    company: "StartupXYZ",
-    location: "Austin, TX",
-    description: "Built responsive web applications and mobile-first experiences.",
-    technologies: ["Vue.js", "JavaScript", "CSS3", "Firebase"],
-    achievements: ["Launched 5 products", "Improved UX metrics by 60%", "Built design system"],
+    year: "Capstone",
+    title: "Development Team Lead",
+    company: "Automated Tax Declaration System (JRU Project)",
+    location: "Mandaluyong City, PH",
+    description: "Spearheaded the architectural blueprint, security workflows, and core treasury processing engine of a multi-tier tax declaration system.",
+    technologies: ["Laravel (PHP)", "MySQL", "JavaScript"],
+    achievements: [
+      "Spearheaded the architectural blueprint and full-stack development of an Automated Tax Declaration System, introducing multi-tier role routing and custom cryptographic security workflows.",
+      "Engineered the core automated treasury processing engine, optimizing financial ledger computation and data tracking modules via data models to guarantee transactional integrity."
+    ],
   },
 ]
 

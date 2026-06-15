@@ -6,10 +6,10 @@ import { Progress } from "@/components/ui/progress"
 import { BookOpen, Zap } from "lucide-react"
 
 const learningData = [
-  { name: "WebAssembly", progress: 75, icon: "🔧" },
-  { name: "Rust", progress: 60, icon: "🦀" },
-  { name: "Machine Learning", progress: 45, icon: "🤖" },
-  { name: "Blockchain", progress: 30, icon: "⛓️" },
+  { name: "Laravel", progress: 85, icon: "🔥" },
+  { name: "React.js", progress: 80, icon: "⚛️" },
+  { name: "Next.js", progress: 75, icon: "▲" },
+  { name: "Machine Learning", progress: 55, icon: "🤖" },
 ]
 
 export default function CurrentlyLearningWidget() {
@@ -49,7 +49,7 @@ export default function CurrentlyLearningWidget() {
             <Zap className="h-4 w-4 text-yellow-400" />
             <span className="text-white font-semibold">Next Up:</span>
           </div>
-          <div className="text-white/80">Exploring quantum computing applications in web development</div>
+          <div className="text-white/80">Improving my implementation of Machine Learning to my web apps</div>
         </motion.div>
       </CardContent>
     </Card>

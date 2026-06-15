@@ -4,78 +4,87 @@ import { useRef, useState, useEffect } from "react"
 import { Canvas, useFrame } from "@react-three/fiber"
 import { Text, OrbitControls } from "@react-three/drei"
 import { motion, AnimatePresence } from "framer-motion"
+import { useTheme } from "next-themes"
 import type * as THREE from "three"
 import { Card, CardContent } from "@/components/ui/card"
 
 const skillsData = [
   {
-    name: "React",
-    category: "Frontend",
-    level: 95,
-    color: "#61DAFB",
-    position: [3, 0, 0],
-    description: "Advanced React development with hooks, context, and performance optimization",
+    name: "Laravel",
+    category: "Backend",
+    level: 88,
+    color: "#FF2D20",
+    position: [0, 3, 0],
+    description: "Web framework used to build DevTrack, Adapted, and JRU Capstone systems.",
   },
   {
-    name: "Node.js",
-    category: "Backend",
-    level: 90,
-    color: "#339933",
+    name: "React",
+    category: "Frontend",
+    level: 82,
+    color: "#61DAFB",
     position: [2.1, 2.1, 0],
-    description: "Server-side JavaScript with Express, APIs, and microservices architecture",
+    description: "Component-driven frontend development used in printababes and web portfolios.",
+  },
+  {
+    name: "Flutter & Dart",
+    category: "Mobile",
+    level: 78,
+    color: "#02569B",
+    position: [2.1, -2.1, 0],
+    description: "Cross-platform mobile applications, used to build all_in_one_tool and internship apps.",
+  },
+  {
+    name: "C++",
+    category: "System",
+    level: 75,
+    color: "#00599C",
+    position: [-2.1, -2.1, 0],
+    description: "System coding used to build Local Search Engine and Automated Sorting System.",
+  },
+  {
+    name: "MySQL",
+    category: "Database",
+    level: 80,
+    color: "#4479A1",
+    position: [-3, 0, 0],
+    description: "Database modeling, schema design, and query optimization across Laravel projects.",
+  },
+  {
+    name: "Next.js",
+    category: "Frontend",
+    level: 75,
+    color: "#FFFFFF",
+    position: [3, 0, 0],
+    description: "React framework with Server-Side Rendering (SSR) used to implement printababes and this portfolio.",
   },
   {
     name: "TypeScript",
     category: "Frontend",
-    level: 88,
-    color: "#3178C6",
-    position: [0, 3, 0],
-    description: "Type-safe JavaScript development with advanced TypeScript patterns",
-  },
-  {
-    name: "Python",
-    category: "AI/ML",
-    level: 85,
-    color: "#3776AB",
-    position: [-2.1, 2.1, 0],
-    description: "Machine learning, data analysis, and backend development with Python",
-  },
-  {
-    name: "AWS",
-    category: "Cloud",
-    level: 82,
-    color: "#FF9900",
-    position: [-3, 0, 0],
-    description: "Cloud infrastructure, serverless computing, and DevOps on AWS",
-  },
-  {
-    name: "Docker",
-    category: "DevOps",
-    level: 80,
-    color: "#2496ED",
-    position: [-2.1, -2.1, 0],
-    description: "Containerization, orchestration, and deployment automation",
-  },
-  {
-    name: "Three.js",
-    category: "Frontend",
-    level: 75,
-    color: "#000000",
-    position: [0, -3, 0],
-    description: "3D graphics, WebGL, and immersive web experiences",
-  },
-  {
-    name: "GraphQL",
-    category: "Backend",
     level: 78,
-    color: "#E10098",
-    position: [2.1, -2.1, 0],
-    description: "API design, schema definition, and efficient data fetching",
+    color: "#3178C6",
+    position: [0, -3, 0],
+    description: "Type-safe JavaScript development used to scale printababes and alfonso-tax UI modules.",
+  },
+  {
+    name: "PHP",
+    category: "Backend",
+    level: 85,
+    color: "#777BB4",
+    position: [-2.1, 2.1, 0],
+    description: "Server-side scripting used to architect core algorithms and routing in DevTrack and JRU Capstone.",
   },
 ]
 
 function SkillOrb({ skill, onClick, isHovered }: any) {
   const meshRef = useRef<THREE.Mesh>(null)
+  const { theme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  const textColor = mounted && theme === "light" ? "#0f172a" : "white"
 
   useFrame((state) => {
     if (meshRef.current) {
@@ -113,7 +122,7 @@ function SkillOrb({ skill, onClick, isHovered }: any) {
         />
       </mesh>
 
-      <Text position={[0, -size - 0.4, 0]} fontSize={0.2} color="white" anchorX="center" anchorY="middle">
+      <Text position={[0, -size - 0.4, 0]} fontSize={0.2} color={textColor} anchorX="center" anchorY="middle">
         {skill.name}
       </Text>
 
@@ -158,8 +167,11 @@ export default function SkillWheel() {
   const [selectedSkill, setSelectedSkill] = useState<any>(null)
   const [webglSupported, setWebglSupported] = useState(true)
   const [canvasError, setCanvasError] = useState(false)
+  const { theme } = useTheme()
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    setMounted(true)
     // Check WebGL support
     try {
       const canvas = document.createElement("canvas")
@@ -171,6 +183,16 @@ export default function SkillWheel() {
       setWebglSupported(false)
     }
   }, [])
+
+  const processedSkillsData = skillsData.map((skill) => {
+    if (skill.name === "Next.js") {
+      return {
+        ...skill,
+        color: mounted && theme === "light" ? "#111111" : "#FFFFFF",
+      }
+    }
+    return skill
+  })
 
   const handleCanvasError = () => {
     setCanvasError(true)
@@ -194,7 +216,7 @@ export default function SkillWheel() {
           <pointLight position={[5, 5, 5]} intensity={0.8} />
           <pointLight position={[-5, -5, -5]} intensity={0.4} color="#ff00ff" />
 
-          {skillsData.map((skill) => (
+          {processedSkillsData.map((skill) => (
             <SkillOrb
               key={skill.name}
               skill={skill}
@@ -206,7 +228,7 @@ export default function SkillWheel() {
           <OrbitControls enableZoom={true} enablePan={false} enableRotate={true} maxDistance={8} minDistance={4} />
         </Canvas>
       ) : (
-        <FallbackSkillsGrid skills={skillsData} onSkillClick={setSelectedSkill} />
+        <FallbackSkillsGrid skills={processedSkillsData} onSkillClick={setSelectedSkill} />
       )}
 
       {/* Skill Details */}

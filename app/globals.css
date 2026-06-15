@@ -119,12 +119,91 @@
 }
 
 .glass-morphism {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
 }
 
 .neuro-morphism {
   background: #1a1a1a;
   box-shadow: 20px 20px 60px #0d0d0d, -20px -20px 60px #272727;
+}
+
+/* Light mode overrides */
+:root:not(.dark) {
+  --background: 210 20% 98%;
+  --foreground: 224 71.4% 4.1%;
+  --card: 0 0% 100%;
+  --card-foreground: 224 71.4% 4.1%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 224 71.4% 4.1%;
+  --primary: 220.9 39.3% 11%;
+  --primary-foreground: 210 20% 98%;
+  --secondary: 220 14.3% 95.9%;
+  --secondary-foreground: 220.9 39.3% 11%;
+  --muted: 220 14.3% 95.9%;
+  --muted-foreground: 220 8.9% 46.1%;
+  --accent: 220 14.3% 95.9%;
+  --accent-foreground: 220.9 39.3% 11%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 20% 98%;
+  --border: 220 13% 91%;
+  --input: 220 13% 91%;
+  --ring: 224 71.4% 4.1%;
+}
+
+:root:not(.dark) .glass-morphism {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+:root:not(.dark) .glass-morphism .border-white\/20,
+:root:not(.dark) .glass-morphism .border-white\/10 {
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+:root:not(.dark) .glass-morphism .bg-white\/10 {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+:root:not(.dark) .text-white {
+  color: hsl(var(--foreground)) !important;
+}
+
+:root:not(.dark) .text-white\/80 {
+  color: hsl(var(--foreground) / 0.8) !important;
+}
+
+:root:not(.dark) .text-white\/70 {
+  color: hsl(var(--foreground) / 0.7) !important;
+}
+
+:root:not(.dark) .text-white\/60 {
+  color: hsl(var(--foreground) / 0.6) !important;
+}
+
+:root:not(.dark) .text-white\/40 {
+  color: hsl(var(--foreground) / 0.4) !important;
+}
+
+:root:not(.dark) .text-white\/50 {
+  color: hsl(var(--foreground) / 0.5) !important;
+}
+
+:root:not(.dark) .border-cyan-400 {
+  border-color: #0d9488 !important; /* Teal-600 */
+}
+
+:root:not(.dark) .text-cyan-400 {
+  color: #0d9488 !important;
+}
+
+:root:not(.dark) .border-purple-400 {
+  border-color: #7c3aed !important; /* Violet-600 */
+}
+
+:root:not(.dark) .text-purple-400 {
+  color: #7c3aed !important;
 }
