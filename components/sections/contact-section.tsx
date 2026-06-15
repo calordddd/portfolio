@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Mail, Phone, MapPin } from "lucide-react"
+import { Mail, Phone, MapPin, MessageSquare } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 
 export default function ContactSection() {
@@ -45,6 +45,16 @@ export default function ContactSection() {
                 <div className="flex items-center gap-3">
                   <Phone className="h-5 w-5 text-green-400" />
                   <span className="text-white/80">+63 961 648 1468</span>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <MessageSquare className="h-5 w-5 text-indigo-400" />
+                  <a 
+                    href="viber://chat?number=%2B639278946134" 
+                    className="text-white/80 hover:text-indigo-400 transition-colors"
+                  >
+                    Viber: 09278946134
+                  </a>
                 </div>
 
                 <div className="flex items-center gap-3">
