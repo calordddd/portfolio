@@ -4,6 +4,8 @@ import { motion } from "framer-motion"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Mail, Phone, MapPin, MessageSquare } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
+import { Button } from "@/components/ui/button"
+import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 
 export default function ContactSection() {
   const { toast } = useToast()
@@ -49,12 +51,50 @@ export default function ContactSection() {
 
                 <div className="flex items-center gap-3">
                   <MessageSquare className="h-5 w-5 text-indigo-400" />
-                  <a 
-                    href="viber://chat?number=%2B639278946134" 
-                    className="text-white/80 hover:text-indigo-400 transition-colors"
-                  >
-                    Viber: 09278946134
-                  </a>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <button className="text-white/80 hover:text-indigo-400 transition-colors text-left focus:outline-none">
+                        Viber: 09278946134
+                      </button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-md bg-black/95 border-white/20 p-6 rounded-lg shadow-2xl text-white">
+                      <DialogTitle className="text-xl font-bold flex items-center gap-2 mb-2">
+                        💬 Connect on Viber
+                      </DialogTitle>
+                      <DialogDescription className="text-white/70 mb-6">
+                        You can copy the number or open the Viber app directly.
+                      </DialogDescription>
+                      
+                      <div className="flex flex-col gap-4">
+                        <div className="flex items-center justify-between p-3 rounded bg-white/5 border border-white/10">
+                          <span className="font-mono text-lg font-semibold select-all">09278946134</span>
+                          <Button
+                            size="sm"
+                            variant="ghost"
+                            onClick={() => {
+                              navigator.clipboard.writeText("09278946134")
+                              toast({
+                                title: "Number Copied! 📋",
+                                description: "Viber number has been copied to your clipboard.",
+                              })
+                            }}
+                            className="text-indigo-400 hover:text-indigo-300 hover:bg-white/10"
+                          >
+                            Copy Number
+                          </Button>
+                        </div>
+                        
+                        <Button
+                          className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium transition-colors"
+                          asChild
+                        >
+                          <a href="viber://chat?number=%2B639278946134">
+                            Open Viber App
+                          </a>
+                        </Button>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
                 </div>
 
                 <div className="flex items-center gap-3">
