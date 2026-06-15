@@ -107,7 +107,7 @@ export default function ContactSection() {
           className="mt-20 pt-8 border-t border-white/10 text-center"
         >
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="text-white/60">© 2025 Lord Cedric Arive. Crafted with ❤️ and cutting-edge tech.</div>
+            <div className="text-white/60">© 2026 Lord Cedric Arive</div>
 
             <div className="flex items-center gap-4">
               <div className="w-16 h-1 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full animate-pulse" />
