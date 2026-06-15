@@ -175,6 +175,7 @@ export default function ProjectGalaxy({ selectedFilter }: ProjectGalaxyProps) {
   const [selectedProject, setSelectedProject] = useState<any>(null)
   const [webglSupported, setWebglSupported] = useState(true)
   const [canvasError, setCanvasError] = useState(false)
+  const [cameraZ, setCameraZ] = useState(7)
 
   const filteredProjects = projectsData.filter(
     (project) => selectedFilter === "all" || project.category === selectedFilter,
@@ -191,6 +192,19 @@ export default function ProjectGalaxy({ selectedFilter }: ProjectGalaxyProps) {
     } catch (e) {
       setWebglSupported(false)
     }
+
+    const handleResize = () => {
+      if (window.innerWidth < 480) {
+        setCameraZ(11.5)
+      } else if (window.innerWidth < 768) {
+        setCameraZ(10.0)
+      } else {
+        setCameraZ(8.0)
+      }
+    }
+    handleResize()
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
   }, [])
 
   const handleCanvasError = () => {
@@ -202,7 +216,8 @@ export default function ProjectGalaxy({ selectedFilter }: ProjectGalaxyProps) {
     <div className="relative w-full h-full">
       {webglSupported && !canvasError ? (
         <Canvas
-          camera={{ position: [0, 0, 6], fov: 60 }}
+          key={cameraZ}
+          camera={{ position: [0, 0, cameraZ], fov: 60 }}
           onError={handleCanvasError}
           gl={{
             antialias: false,
@@ -224,7 +239,7 @@ export default function ProjectGalaxy({ selectedFilter }: ProjectGalaxyProps) {
             />
           ))}
 
-          <OrbitControls enableZoom={true} enablePan={true} enableRotate={true} maxDistance={10} minDistance={3} />
+          <OrbitControls enableZoom={true} enablePan={true} enableRotate={true} maxDistance={15} minDistance={3} />
         </Canvas>
       ) : (
         <FallbackProjectGrid projects={filteredProjects} onProjectClick={setSelectedProject} />

@@ -42,7 +42,7 @@ export default function InteractiveTimeline() {
   return (
     <div className="relative">
       {/* Timeline Line */}
-      <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-cyan-400 to-purple-400 rounded-full" />
+      <div className="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-cyan-400 to-purple-400 rounded-full" />
 
       <div className="space-y-12">
         {timelineData.map((item, index) => (
@@ -51,10 +51,20 @@ export default function InteractiveTimeline() {
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.2, duration: 0.6 }}
-            className={`flex items-center ${index % 2 === 0 ? "flex-row" : "flex-row-reverse"}`}
+            className={`relative flex flex-col md:flex-row items-start md:items-center min-h-[150px]`}
           >
+            {/* Timeline Node */}
+            <div className="absolute left-4 md:left-1/2 transform -translate-x-1/2 z-10">
+              <motion.div
+                whileHover={{ scale: 1.2 }}
+                className="w-6 h-6 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full border-4 border-black shadow-lg"
+              />
+            </div>
+
             {/* Content Card */}
-            <div className={`w-5/12 ${index % 2 === 0 ? "pr-8" : "pl-8"}`}>
+            <div className={`w-full md:w-5/12 pl-12 pr-4 ${
+              index % 2 === 0 ? "md:pl-0 md:pr-8 md:ml-0 md:mr-auto" : "md:pl-8 md:pr-0 md:ml-auto md:mr-0"
+            }`}>
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 onClick={() => setSelectedItem(selectedItem === item.id ? null : item.id)}
@@ -92,17 +102,6 @@ export default function InteractiveTimeline() {
                 </Card>
               </motion.div>
             </div>
-
-            {/* Timeline Node */}
-            <div className="relative z-10">
-              <motion.div
-                whileHover={{ scale: 1.2 }}
-                className="w-6 h-6 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full border-4 border-black shadow-lg"
-              />
-            </div>
-
-            {/* Spacer */}
-            <div className="w-5/12" />
           </motion.div>
         ))}
       </div>

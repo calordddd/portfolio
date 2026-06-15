@@ -169,6 +169,7 @@ export default function SkillWheel() {
   const [canvasError, setCanvasError] = useState(false)
   const { theme } = useTheme()
   const [mounted, setMounted] = useState(false)
+  const [cameraZ, setCameraZ] = useState(8)
 
   useEffect(() => {
     setMounted(true)
@@ -182,6 +183,19 @@ export default function SkillWheel() {
     } catch (e) {
       setWebglSupported(false)
     }
+
+    const handleResize = () => {
+      if (window.innerWidth < 480) {
+        setCameraZ(14.0)
+      } else if (window.innerWidth < 768) {
+        setCameraZ(11.5)
+      } else {
+        setCameraZ(9.0)
+      }
+    }
+    handleResize()
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
   }, [])
 
   const processedSkillsData = skillsData.map((skill) => {
@@ -203,7 +217,8 @@ export default function SkillWheel() {
     <div className="relative w-full h-full">
       {webglSupported && !canvasError ? (
         <Canvas
-          camera={{ position: [0, 0, 6], fov: 60 }}
+          key={cameraZ}
+          camera={{ position: [0, 0, cameraZ], fov: 60 }}
           onError={handleCanvasError}
           gl={{
             antialias: false,
@@ -225,7 +240,7 @@ export default function SkillWheel() {
             />
           ))}
 
-          <OrbitControls enableZoom={true} enablePan={false} enableRotate={true} maxDistance={8} minDistance={4} />
+          <OrbitControls enableZoom={true} enablePan={false} enableRotate={true} maxDistance={18} minDistance={4} />
         </Canvas>
       ) : (
         <FallbackSkillsGrid skills={processedSkillsData} onSkillClick={setSelectedSkill} />
